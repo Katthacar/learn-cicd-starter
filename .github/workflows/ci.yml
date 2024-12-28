@@ -11,11 +11,11 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4 # Acción predefinida a usar
 
       - name: Set up Go
-        uses: actions/setup-go@v5
-        with: 
+        uses: actions/setup-go@v5 # Acción predefinida a usar
+        with: # Inputs de la Acción
           go-version: '1.23.0'
 
       - name: Running tests
@@ -36,3 +36,9 @@ jobs:
 
       - name: Style
         run: test -z $(go fmt ./...)
+
+      - name: Install staticcheck
+        run: go install honnef.co/go/tools/cmd/staticcheck@latest
+
+      - name: Check staticcheck
+        run: staticcheck ./...
